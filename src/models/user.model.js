@@ -1,4 +1,4 @@
-const pool = require("../config/database");
+const pool = require("../config/db");
 
 // Le $1 correspond au premier paramètre que tu fournis à pool.query() : [email]
 const findUserByEmail = async (email) => {
