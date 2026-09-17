@@ -81,8 +81,26 @@ const login = async (req, res) => {
         });
     }
 };
+const logout = (req, res) => {
+    req.session.destroy((error) => {
+        if (error) {
+            console.error(error);
+
+            return res.status(500).json({
+                message: "Erreur lors de la déconnexion"
+            });
+        }
+
+        res.clearCookie("connect.sid");
+
+        return res.status(200).json({
+            message: "Déconnexion réussie"
+        });
+    });
+};
 
 module.exports = {
+    register,
     login,
-    register
+    logout
 };
