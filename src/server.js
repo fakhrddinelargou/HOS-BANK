@@ -1,5 +1,5 @@
-// 1. Import the express library
 const express = require('express');
+const compteRouter = require('../src/routes/compte.routes');
 
 require("dotenv").config();
 
@@ -16,11 +16,13 @@ app.use(session({
 }));
 
 // 3. Define the port environment variable (defaulting to 3000)
+const app = express();
+
 const PORT = process.env.PORT || 3000;
 
-// 4. Built-in Middleware Preparation (Crucial for parsing request data)
 app.use(express.json());                         // Parses incoming JSON payloads
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data (like form submissions)
+app.use('/compte' , compteRouter)
 
 // 5. Define a test route
 app.get('/', (req, res) => {
