@@ -36,6 +36,53 @@ const register = async (req, res) => {
     }
 };
 
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const user = await findUserByEmail(email);
+
+        if (!user) {
+            return res.status(401).json({
+                message: "Email ou mot de passe incorrect"
+            });
+        }
+
+        const isPasswordValid = await bcrypt.compare(
+            password,
+            user.password
+        );
+
+        if (!isPasswordValid) {
+            return res.status(401).json({
+                message: "Email ou mot de passe incorrect"
+            });
+        }
+
+        req.session.userId = user.id;
+        req.session.role = user.role;
+
+        return res.status(200).json({
+            message: "Connexion réussie",
+            user: {
+                id: user.id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email,
+                role: user.role
+            }
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            message: "Erreur serveur"
+        });
+    }
+};
+
 module.exports = {
+    login,
     register
 };
