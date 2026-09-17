@@ -6,10 +6,9 @@ const generateAccountNumber = () => {
     return `${acc}-${randomNumer}`;
 };
 
- function getComptesByClientID(clientID) {
-        const account = accounts.filter((el) => el.client_id === clientID);
-        console.log(account);
-        return account
+async function getComptesByClientID(clientID) {
+        const account = await pool.query('SELECT * FROM accounts WHERE client_id = $1 ' , [clientID])
+        return account.rows[0]
 }
 
 function getCompteById(id){

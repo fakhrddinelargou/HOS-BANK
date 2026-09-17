@@ -1,10 +1,10 @@
 const express = require('express');
 const authRoutes = require("./routes/auth.routes");
 const compteRouter = require('../src/routes/compte.routes');
+const session = require("express-session");
 
 require("dotenv").config();
 
-const session = require("express-session");
 
 const app = express();
 
