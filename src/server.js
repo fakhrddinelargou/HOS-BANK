@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     res.send('Your Express server is successfully prepared and running!');
 });
 
+
 //auth
 const authRoutes = require("./routes/auth.routes");
 app.use('/auth', authRoutes);
