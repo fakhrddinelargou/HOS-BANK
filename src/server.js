@@ -16,6 +16,11 @@ app.get('/', (req, res) => {
     res.send('Your Express server is successfully prepared and running!');
 });
 
+//auth
+const authRoutes = require("./routes/auth.routes");
+app.use('/auth', authRoutes);
+
+
 // 6. Bind and listen for connections on the specified port
 app.listen(PORT, () => {
     console.log(`🚀 Server is listening at http://localhost:${PORT}`);
