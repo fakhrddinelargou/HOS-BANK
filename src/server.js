@@ -1,8 +1,19 @@
 // 1. Import the express library
 const express = require('express');
 
+require("dotenv").config();
+
+const session = require("express-session");
+
+
 // 2. Initialize the Express application instance
 const app = express();
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
 
 // 3. Define the port environment variable (defaulting to 3000)
 const PORT = process.env.PORT || 3000;
