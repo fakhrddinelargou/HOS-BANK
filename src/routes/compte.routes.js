@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const  compteController = require('../controllers/compte.controller');
+const  {getCompteByID, getComptesByCID , getSolde , createAccount ,updateSoldeAccount }= require('../controllers/compte.controller');
 
-router.get('/api/user/:id' , compteController.getComptesByCID);
-router.get('/api/compte/:id' , compteController.getCompteByID);
-router.get('/api/solde/:id' , compteController.getSolde);
-router.post('/api/create' , compteController.createAccount);
+router.get('/api/clients/:clientId/comptes' , getComptesByCID);
+router.get('/api/comptes/:id' , getCompteByID);
+router.post('/api/comptes/:id/solde' , getSolde);
+router.patch('/api/comptes/:id/solde' , updateSoldeAccount);
+router.post('/api/comptes' , createAccount);
 
 
 module.exports = router;

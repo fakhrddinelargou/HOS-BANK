@@ -1,5 +1,6 @@
-const {getComptesByClientID} = require('../modules/compte.module');
+const {getComptesByClientID , createCompte , getCompteById  ,  getSoldeByCompteId ,  updateSolde} = require('../modules/compte.module');
 
+// DONE
 async function getComptesByCID(req, res) {
 
     const id = Number(req.params.id)
@@ -19,17 +20,20 @@ async function getComptesByCID(req, res) {
     }
 }
 
-function getCompteByID(req, res) {
+// DONE
+async function getCompteByID(req, res) {
+
     const id = Number(req.params.id);
 
     if (!Number(id)) {
         return res.status(400).json({ error: "Id Invalid" });
     }
 
-    const compte = compteModules.getCompteById(id);
-
-    if (compte && compte.length > 0) {
-        return res.json({ success: compte })
+    const compte =  getCompteById(id);
+  
+    
+    if (compte) {
+        return res.json({ data: compte })
     } else {
         return res.status(404).json({ error: "Account not found" });
     }
@@ -37,55 +41,58 @@ function getCompteByID(req, res) {
 
 }
 
-
-function getSolde(req, res) {
+// DONE
+async function getSolde(req, res) {
     const id = Number(req.params.id);
     if (!Number(id)) {
         res.status(400).json({ error: "Invalid ID" })
     }
 
-    const soldeA = compteModules.getSoldeByCompteId(id);
+    const soldeA = await getSoldeByCompteId(id);
 
-    if (soldeA && soldeA.length > 0) {
-        return res.json({ solde: soldeA[0].solde })
+    if (soldeA) {
+        return res.json({ solde: soldeA })
     } else {
         return res.status(404).json({ error: "Account not found" })
     }
 }
 
-function updateSoldeAccount(req , res){
+async function updateSoldeAccount(req , res){
     const id = Number(req.params.id)
-    const montant = Number(req.params.montant)
+    const montant = Number(req.body.montant)
 
-
-    if(!Number(id) && Number(montant)){
-        return res.status(400).json({error : 'Invalid ID'})
+    if(!Number(id) || !Number(montant)){
+        return res.status(400).json({error : 'Invalid DATA'})
     }
+ 
+    const result = await updateSolde(id ,montant);
+    console.log(result);
 
-    const method = true// mothod
-
-    if(method){
+    if(result === 1){
         return res.json({success : "Amount updated successful"})
     }else{
         return res.status(404).json({error : 'Account not found'})
     }
-
-
 }
 
-
-function createAccount(req, res) {
+// DONE
+async function createAccount(req, res) {
     const clientId = req.body.client_id;
 
     if (!Number(clientId)) {
         return res.status(400).json({ error: "Invalide CLIENT_ID" })
     }
 
-    compteModules.createCompte(clientId)
+    const  result  = await createCompte(clientId)
 
-    res.json({ success: 'Account created successful' });
+    if(result){
+        res.json({ success: 'Account created successful' });
+    }else{
+        res.json({ Error: 'Something Worng' });
+    }
+    
 }
 
 
 
-module.exports = { getComptesByCID, getCompteByID, getSolde, createAccount }
+module.exports = { getComptesByCID, getCompteByID, getSolde, createAccount , updateSoldeAccount }
