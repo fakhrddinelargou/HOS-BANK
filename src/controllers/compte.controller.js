@@ -1,6 +1,6 @@
-const compteModules = require('../modules/compte.module');
+const {getComptesByClientID} = require('../modules/compte.module');
 
-function getComptesByCID(req, res) {
+async function getComptesByCID(req, res) {
 
     const id = Number(req.params.id)
 
@@ -8,10 +8,12 @@ function getComptesByCID(req, res) {
         return res.status(400).json({ error: 'ID invalide' })
     }
 
-    const compte = compteModules.getComptesByClientID(id);
+    const compte = await getComptesByClientID(id);
 
-    if (compte && compte.length > 0) {
-        return res.json({ success: compte })
+    
+
+    if (compte) {
+        return res.json({ data: compte })
     } else {
         return res.status(404).json({ error: 'Account not found' })
     }
@@ -34,6 +36,7 @@ function getCompteByID(req, res) {
 
 
 }
+
 
 function getSolde(req, res) {
     const id = Number(req.params.id);
