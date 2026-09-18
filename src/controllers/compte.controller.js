@@ -61,12 +61,10 @@ async function updateSoldeAccount(req , res){
     const id = Number(req.params.id)
     const montant = Number(req.body.montant)
 
-    if(!Number(id) || !Number(montant)){
+    if(!Number(id) || !Number(montant) || montant <= 0){
         return res.status(400).json({error : 'Invalid DATA'})
     }
- 
     const result = await updateSolde(id ,montant);
-    console.log(result);
 
     if(result === 1){
         return res.json({success : "Amount updated successful"})
