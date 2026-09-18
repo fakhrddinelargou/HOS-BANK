@@ -153,4 +153,10 @@ INSERT INTO roles (name) VALUES ('client'), ('agent'), ('admin');
 
 
 
-SELECT * FROM users;
+CREATE TABLE "session" (
+  "sid" VARCHAR NOT NULL PRIMARY KEY,
+  "sess" JSON NOT NULL,
+  "expire" TIMESTAMP(6) NOT NULL
+);
+
+CREATE INDEX "IDX_session_expire" ON "session" ("expire");
