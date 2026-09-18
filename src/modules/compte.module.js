@@ -1,31 +1,44 @@
 const pool = require('../config/db');
 
+
+// GENERATE ACCOUNT NUMBER
 const generateAccountNumber = () => {
     const acc = "ACC";
     const randomNumer = Math.floor(100000000 + Math.random() * 900000000);
     return `${acc}-${randomNumer}`;
 };
 
+
+//  DONE
 async function getComptesByClientID(clientID) {
         const account = await pool.query('SELECT * FROM accounts WHERE client_id = $1 ' , [clientID])
-        return account.rows[0]
+        return account.rows[0];
 }
 
-function getCompteById(id){
-    const compte = accounts.filter((el) => el.id === id);
-    return compte
+// DONE
+async function getCompteById(id){
+    const compte = await pool.query('SELECT * FROM  accounts WHERE id = $1' , [id]);
+    return compte.rows[0]
 }
 
-function getSoldeByCompteId(id){
-    const AccountSolde = accounts.filter(el => el.id === id);
+// DONE
+async function getSoldeByCompteId(id){
+    
+    const AccountSolde = await pool.query('SELECT balance FROM accounts WHERE id = $1' , [id]);
 
-    return AccountSolde
+    return AccountSolde.rows[0];
 }
 
-// function updateSolde(id, montant) {
+// DONE
+async function updateSolde(id, montant) {
+    
+    const solde = await pool.query('UPDATE accounts  SET balance = balance + $1 WHERE id = $2' , [montant , id]);
+    return solde.rowCount;
 
-// }
+}
 
+
+// DONE
 async function createCompte(client_id){
 
     const account_number = generateAccountNumber(); 
@@ -35,8 +48,7 @@ async function createCompte(client_id){
    VALUES ($1, $2, $3, $4) 
    RETURNING *`,
   [client_id, account_number, type, balance])
-
   return createAccount;
 }
 
-module.exports = {getComptesByClientID , getCompteById , getSoldeByCompteId , createCompte}
+module.exports = {getComptesByClientID , getCompteById , getSoldeByCompteId , createCompte , updateSolde }
