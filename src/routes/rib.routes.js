@@ -1,3 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const {} = require('../controllers/rib.controller');
+const {createRIB , getRibByCompteID} = require('../controllers/rib.controller');
+
+
+
+router.post('/api/create' , createRIB);
+router.get('/api/:id' , getRibByCompteID);
+
+
+
+module.exports =  router

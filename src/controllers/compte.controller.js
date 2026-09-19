@@ -1,4 +1,4 @@
-const {getComptesByClientID , createCompte , getCompteById  ,  getSoldeByCompteId ,  updateSolde} = require('../modules/compte.module');
+const {getComptesByClientID , createCompte , getCompteById  ,  getSoldeByCompteId ,  updateSolde} = require('../models/compte.module');
 
 // DONE
 async function getComptesByCID(req, res) {
@@ -57,6 +57,7 @@ async function getSolde(req, res) {
     }
 }
 
+// DONE
 async function updateSoldeAccount(req , res){
     const id = Number(req.params.id)
     const montant = Number(req.body.montant)
