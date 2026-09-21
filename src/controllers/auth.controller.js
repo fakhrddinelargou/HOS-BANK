@@ -3,7 +3,13 @@ const { findUserByEmail, createUser } = require("../models/user.model");
 
 const register = async (req, res) => {
     try {
-        const { firstName, lastName, email, password } = req.body;
+        const {
+            first_name,
+            last_name, 
+            email, 
+            password, 
+            phone
+         } = req.body;
 
         const existingUser = await findUserByEmail(email);
 
@@ -15,11 +21,15 @@ const register = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        const role_id = 1; // l'id du role client par défaut 
+
         const user = await createUser(
-            firstName,
-            lastName,
-            email,
-            hashedPassword,
+            role_id,
+            first_name,
+            last_name, 
+            email, 
+            hashedPassword, 
+            phone
         );
 
         res.status(201).json({
