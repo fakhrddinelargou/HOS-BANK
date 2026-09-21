@@ -9,13 +9,46 @@ const findUserByEmail = async (email) => {
 
     return result.rows[0];
 };
+       
 
-const createUser = async (firstName, lastName, email, password) => {
+const createUser = async (
+        role_id,
+        first_name,
+        last_name, 
+        email, 
+        password_hash, 
+        phone
+    ) => {
     const result = await pool.query(
-        `INSERT INTO users (first_name, last_name, email, password)
-         VALUES ($1, $2, $3, $4)
-         RETURNING id, first_name, last_name, email, role, email_verified`,
-        [firstName, lastName, email, password]
+        `INSERT INTO users (
+            role_id,
+            first_name, 
+            last_name, 
+            email, 
+            password_hash,
+            phone
+            )
+        VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING 
+            id,                 
+            role_id,            
+            first_name,         
+            last_name,          
+            email,   
+            phone,              
+            email_verified,     
+            verification_token, 
+            status,             
+            created_at         
+            `,
+        [
+            role_id,
+            first_name, 
+            last_name, 
+            email, 
+            password_hash,
+            phone
+        ]
         // Après l'insertion, PostgreSQL nous renvoie les informations du nouvel utilisateur
     );
 

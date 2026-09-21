@@ -1,14 +1,3 @@
-const isAuthenticated = (req, res, nex)=>{
-    if(!req.session.userId){
-        return res.status(401).json({
-            message: "Vous devez etre connecté"
-        })
-    }
-
-    next();
-}
-
-
 const authorizeRole = (...allowedRoles)=>{
 
     return (req, res, next)=>{
@@ -23,7 +12,6 @@ const authorizeRole = (...allowedRoles)=>{
     }
 }
 
-
 module.exports = {
-    isAuthenticated
+    authorizeRole
 }
