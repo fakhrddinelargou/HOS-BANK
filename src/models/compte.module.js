@@ -1,12 +1,7 @@
 const pool = require('../config/db');
+const {generateAccountNumber} = require('../utils/generatebankinfo');
 
 
-// GENERATE ACCOUNT NUMBER
-const generateAccountNumber = () => {
-    const acc = "ACC";
-    const randomNumer = Math.floor(100000000 + Math.random() * 900000000);
-    return `${acc}-${randomNumer}`;
-};
 
 
 //  DONE
