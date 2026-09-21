@@ -58,10 +58,11 @@ const login = async (req, res) => {
                 message: "Email ou mot de passe incorrect"
             });
         }
+        //la validation des données venus du front-end
 
         const isPasswordValid = await bcrypt.compare(
             password,
-            user.password
+            user.password_hash
         );
 
         if (!isPasswordValid) {

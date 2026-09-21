@@ -27,7 +27,6 @@ app.use('/auth', authRoutes);
 app.use('/rib', ribRoutes);
 
 //auth
-const authRoutes = require("./routes/auth.routes");
 app.use('/auth', authRoutes);
 
 
