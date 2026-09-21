@@ -20,6 +20,7 @@ const register = async (req, res) => {
             lastName,
             email,
             hashedPassword,
+
         );
 
         res.status(201).json({

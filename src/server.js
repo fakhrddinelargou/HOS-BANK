@@ -14,6 +14,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
+// 3. Define the port environment variable (defaulting to 3000)
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -22,6 +23,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/compte' , compteRouter)
 app.use('/auth', authRoutes);
+
+//auth
+const authRoutes = require("./routes/auth.routes");
+app.use('/auth', authRoutes);
+
+
+// 6. Bind and listen for connections on the specified port
 
 app.listen(PORT, () => {
     console.log(`🚀 Server is listening at http://localhost:${PORT}`);
