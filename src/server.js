@@ -1,6 +1,7 @@
 const express = require('express');
 const authRoutes = require("./routes/auth.routes");
 const ribRoutes = require("./routes/rib.routes");
+const complaintRoutes = require("./routes/complaint.routes");
 const compteRouter = require('./routes/compte.routes');
 const session = require("express-session");
 require("dotenv").config();
@@ -28,6 +29,9 @@ app.use('/rib', ribRoutes);
 
 //auth
 app.use('/auth', authRoutes);
+
+//complaint
+app.use('/complaint', complaintRoutes);
 
 
 // 6. Bind and listen for connections on the specified port
