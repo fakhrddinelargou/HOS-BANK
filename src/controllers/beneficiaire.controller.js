@@ -37,7 +37,7 @@ async function createBeneficiaries(req, res) {
     //     return res.status(401).json({ error: "Invalid DATA" })
     // }
 
-    return res.status(201).json({ success: "Beneficiaries created successful" });
+    // return res.status(201).json({ success: "Beneficiaries created successful" });
 
 }
 
