@@ -12,7 +12,7 @@ const schema = z.object({
 async function createBeneficiaries(req, res) {
 
     console.log("Session after set:", req.sessionID);
-    // console.log(req.session);
+    console.log(req.session);
     
     
     // const rst = schema.safeParse(req.body);
