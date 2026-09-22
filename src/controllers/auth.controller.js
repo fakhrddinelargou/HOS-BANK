@@ -61,7 +61,7 @@ const login = async (req, res) => {
 
         const isPasswordValid = await bcrypt.compare(
             password,
-            user.password
+            user.password_hash
         );
 
         if (!isPasswordValid) {
@@ -72,6 +72,8 @@ const login = async (req, res) => {
 
         req.session.userId = user.id;
         req.session.role = user.role;
+
+        console.log("Session after set:", req.sessionID);
 
         return res.status(200).json({
             message: "Connexion réussie",
