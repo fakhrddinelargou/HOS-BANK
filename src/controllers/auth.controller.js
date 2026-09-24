@@ -74,9 +74,6 @@ const login = async (req, res) => {
 
         req.session.userId = user.id;
         req.session.role = user.role_id;
-        console.log(req.headers);
-
-        console.log("Session after set:", req.session);
 
         return res.status(200).json({
             message: "Connexion réussie",
