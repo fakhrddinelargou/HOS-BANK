@@ -9,7 +9,7 @@ const registerSchema = z.object({
 });
 
 const loginSchema = z.object({
-    email: z.string().trim().email().regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/, "Le prénom contient des caractères invalides"),
+    email: z.string().trim().email(),
     password: z.string().min(8)
 })
 
