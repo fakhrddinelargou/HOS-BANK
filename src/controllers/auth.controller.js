@@ -53,11 +53,13 @@ const login = async (req, res) => {
 
         const user = await findUserByEmail(email);
 
+
         if (!user) {
             return res.status(401).json({
                 message: "Email ou mot de passe incorrect"
             });
         }
+        //la validation des données venus du front-end
 
         const isPasswordValid = await bcrypt.compare(
             password,
@@ -71,7 +73,8 @@ const login = async (req, res) => {
         }
 
         req.session.userId = user.id;
-        req.session.role = user.role;
+        req.session.role = user.role_id;
+        console.log(req.headers);
 
         console.log("Session after set:", req.session);
 

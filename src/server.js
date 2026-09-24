@@ -24,6 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/compte' , compteRouter)
 app.use('/auth', authRoutes);
 app.use('/rib', ribRoutes);
+
+//auth
 app.use('/auth', authRoutes);
 app.use('/beneficiaries', beneficiariesRouter);
 
