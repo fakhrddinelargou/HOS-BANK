@@ -53,6 +53,7 @@ const login = async (req, res) => {
 
         const user = await findUserByEmail(email);
 
+
         if (!user) {
             return res.status(401).json({
                 message: "Email ou mot de passe incorrect"
@@ -72,7 +73,8 @@ const login = async (req, res) => {
         }
 
         req.session.userId = user.id;
-        req.session.role = user.role;
+        req.session.role = user.role_id;
+        console.log(req.headers);
 
         return res.status(200).json({
             message: "Connexion réussie",
