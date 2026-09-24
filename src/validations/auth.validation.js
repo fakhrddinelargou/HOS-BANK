@@ -8,6 +8,12 @@ const registerSchema = z.object({
     phone: z.string().min(10).max(15)
 });
 
+const loginSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(8)
+})
+
 module.exports = {
-    registerSchema
+    registerSchema,
+    loginSchema
 };
