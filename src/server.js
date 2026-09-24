@@ -1,13 +1,12 @@
 const express = require('express');
+const app = express();
 const authRoutes = require("./routes/auth.routes");
 const ribRoutes = require("./routes/rib.routes");
 const compteRouter = require('./routes/compte.routes');
+const beneficiariesRouter = require('./routes/beneficiaires.routes')
 const session = require("express-session");
 require("dotenv").config();
 
-
-
-const app = express();
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -28,9 +27,10 @@ app.use('/rib', ribRoutes);
 
 //auth
 app.use('/auth', authRoutes);
+app.use('/beneficiaries', beneficiariesRouter);
 
 
-// 6. Bind and listen for connections on the specified port
+
 
 app.listen(PORT, () => {
     console.log(`🚀 Server is listening at http://localhost:${PORT}`);
