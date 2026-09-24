@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const authRoutes = require("./routes/auth.routes");
 const ribRoutes = require("./routes/rib.routes");
+const complaintRoutes = require("./routes/complaint.routes");
 const compteRouter = require('./routes/compte.routes');
 const beneficiariesRouter = require('./routes/beneficiaires.routes')
 const session = require("express-session");
@@ -29,6 +30,9 @@ app.use('/rib', ribRoutes);
 app.use('/auth', authRoutes);
 app.use('/beneficiaries', beneficiariesRouter);
 
+
+//complaint
+app.use('/complaint', complaintRoutes);
 
 
 
