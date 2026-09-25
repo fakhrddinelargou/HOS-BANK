@@ -19,7 +19,7 @@ const path = require("path");
 require("dotenv").config();
 //views
 app.set('view engine', "ejs");
-app.set("views", path.join(__dirnamedirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
 
 // 3. Define the port environment variable (defaulting to 3000)
