@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require("dotenv").config();
 //routes
 const authRoutes = require("./routes/auth.routes");
 const ribRoutes = require("./routes/rib.routes");
@@ -16,7 +17,6 @@ app.use(session({
 }));
 
 const path = require("path");
-require("dotenv").config();
 //views
 app.set('view engine', "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -41,6 +41,9 @@ app.use('/', viewRoutes);
 
 //complaint
 app.use('/complaint', complaintRoutes);
+
+//
+app.use(express.static(path.join(__dirname, "public")));
 
 
 
