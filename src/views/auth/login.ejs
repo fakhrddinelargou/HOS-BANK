@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HosBank - Connexion</title>
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Reset et Base --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            /* Fond sombre global */
+            background-color: #0b1120;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b1120 70%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f8fafc;
+            padding: 20px;
+        }
+
+        /* --- Layout Principal (2 colonnes) --- */
+        .main-container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px; /* Légèrement plus étroit que l'inscription car moins de champs */
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        /* --- Panneau de Gauche : Branding --- */
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+            border: 1px solid #d4af37; /* Bordure dorée */
+            border-radius: 20px;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Effet de réseau/monde en fond (simulé en CSS) */
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 20px 20px, 20px 20px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .brand-logo {
+            font-size: 42px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .brand-logo i {
+            color: #d4af37; /* Logo icon doré */
+            font-size: 48px;
+        }
+
+        .brand-subtitle {
+            color: #d4af37; /* Texte doré */
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .brand-footer {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* --- Panneau de Droite : Formulaire (Glassmorphism) --- */
+        .right-panel {
+            flex: 1.2;
+            background: rgba(255, 255, 255, 0.03); /* Transparence */
+            backdrop-filter: blur(16px); /* Effet verre dépoli */
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .form-header p {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        /* --- Formulaire --- */
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px 14px 45px; /* Espace à gauche pour l'icône */
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-size: 15px;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: #64748b;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        input:focus + i, input:not(:placeholder-shown) + i {
+            color: #d4af37;
+        }
+
+        /* --- Bouton Soumettre --- */
+        button {
+            margin-top: 10px;
+            padding: 16px;
+            background: linear-gradient(90deg, #d4af37 0%, #fef08a 50%, #d4af37 100%);
+            background-size: 200% auto;
+            color: #020617; /* Texte très sombre pour contraste */
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        button:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* --- Erreurs --- */
+        #errors {
+            color: #ef4444;
+            font-size: 14px;
+            text-align: center;
+            min-height: 20px;
+            font-weight: 500;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            padding: 0;
+        }
+        
+        #errors:not(:empty) {
+            padding: 10px;
+        }
+
+        /* --- Lien Inscription --- */
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .register-link a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+            color: #fef08a;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 860px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .left-panel {
+                padding: 40px 20px;
+                min-height: 250px;
+            }
+            .right-panel {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        
+        <!-- Panneau de Gauche : Branding -->
+        <div class="left-panel">
+            <div class="brand-top">
+                <div class="brand-logo">
+                    <i class="fas fa-shield-alt"></i> <!-- Même icône que l'inscription -->
+                    HosBank
+                </div>
+                <div class="brand-subtitle">Votre avenir financier, sécurisé.</div>
+            </div>
+            
+            <div class="brand-footer">
+                Ravis de vous revoir parmi nous.<br>
+                Accédez à votre espace sécurisé en toute simplicité.
+            </div>
+        </div>
+
+        <!-- Panneau de Droite : Formulaire -->
+        <div class="right-panel">
+            <div class="form-header">
+                <h2>Content de vous revoir !</h2>
+                <p>Veuillez entrer vos identifiants pour vous connecter</p>
+            </div>
+
+            <!-- Ton formulaire JS intact -->
+            <form id="loginForm">
+                
+                <div class="input-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <!-- Zone d'erreurs -->
+                <div id="errors"></div>
+
+                <button type="submit">Se connecter</button>
+
+                <div class="register-link">
+                    Vous n'avez pas encore de compte ? <a href="/register">S'inscrire</a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Ton script JS intact -->
+    <script src="/js/login.js"></script>
+</body>
+</html>
