@@ -1,1 +1,78 @@
-<%- include('../partials/header') %><main><h1>Mes bénéficiaires</h1></main><%- include('../partials/footer') %>
+<%-  %>
+
+<!-- <main class="max-w-5xl mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Mes bénéficiaires</h1>
+    <button onclick="document.getElementById('addModal').classList.remove('hidden')"
+      class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+      + Ajouter un bénéficiaire
+    </button>
+  </div>
+
+  <!-- Liste des bénéficiaires -->
+  <div class="bg-white rounded-xl shadow overflow-hidden">
+    <table class="w-full text-left">
+      <thead class="bg-gray-50 text-gray-600 text-sm">
+        <tr>
+          <th class="px-6 py-3">Nom</th>
+          <th class="px-6 py-3">RIB</th>
+          <th class="px-6 py-3">Banque</th>
+          <th class="px-6 py-3 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100">
+        <% beneficiaires.forEach(b => { %>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-gray-800"><%= b.nom %></td>
+            <td class="px-6 py-4 text-gray-500 font-mono text-sm"><%= b.rib %></td>
+            <td class="px-6 py-4 text-gray-500"><%= b.banque %></td>
+            <td class="px-6 py-4 text-right space-x-2">
+              <button class="text-blue-600 hover:underline text-sm">Modifier</button>
+              <button class="text-red-600 hover:underline text-sm">Supprimer</button>
+            </td>
+          </tr>
+        <% }) %>
+
+        <% if (beneficiaires.length === 0) { %>
+          <tr>
+            <td colspan="4" class="px-6 py-10 text-center text-gray-400">
+              Aucun bénéficiaire ajouté pour le moment.
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal Ajouter -->
+  <div id="addModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+      <h2 class="text-lg font-semibold mb-4">Nouveau bénéficiaire</h2>
+      <form action="/beneficiaries/api/create" method="POST" class="space-y-4">
+        <div>
+          <label class="block text-sm text-gray-600 mb-1">Nom complet</label>
+          <input type="text" name="nom" required
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm text-gray-600 mb-1">RIB</label>
+          <input type="text" name="rib" required
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-sm text-gray-600 mb-1">Banque</label>
+          <input type="text" name="banque"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')"
+            class="px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">Annuler</button>
+          <button type="submit"
+            class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main> -->
+
+<%-  %>

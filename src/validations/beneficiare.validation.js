@@ -11,3 +11,4 @@ const createBeneficiariesSchema = z.object({
 
 
 module.exports = {createBeneficiariesSchema}
+

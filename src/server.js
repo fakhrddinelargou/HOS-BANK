@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
+console.log( '/', __dirname , '/');
 
 app.use('/compte' , compteRouter)
 app.use('/auth', authRoutes);
@@ -28,6 +29,7 @@ app.use('/rib', ribRoutes);
 //auth
 app.use('/auth', authRoutes);
 app.use('/beneficiaries', beneficiariesRouter);
+
 
 
 
